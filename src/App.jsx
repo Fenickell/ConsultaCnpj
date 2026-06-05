@@ -160,6 +160,19 @@ function buildStateRegistrations(inscricoes) {
     .join(' | ');
 }
 
+function getResponsibleLabel(companyData) {
+  if (companyData?.responsavel_federativo) {
+    return companyData.responsavel_federativo;
+  }
+
+  const firstPartner = companyData?.socios?.[0];
+  if (firstPartner?.nome) {
+    return firstPartner.nome;
+  }
+
+  return '-';
+}
+
 function getStatusSummary(companyData) {
   const status = companyData?.estabelecimento?.situacao_cadastral;
   const openingDate = formatDate(companyData?.estabelecimento?.data_inicio_atividade);
@@ -479,13 +492,21 @@ export default function App() {
                 </div>
 
                 <div className="mt-6 grid gap-4 md:grid-cols-2">
+                  <ExecutiveItem label="Razao social" value={companyData?.razao_social || '-'} />
+                  <ExecutiveItem label="Nome fantasia" value={establishment?.nome_fantasia || '-'} />
                   <ExecutiveItem label="CNPJ" value={formatCnpj(establishment?.cnpj)} />
+                  <ExecutiveItem
+                    label="Inscricao estadual"
+                    value={buildStateRegistrations(establishment?.inscricoes_estaduais)}
+                  />
                   <ExecutiveItem
                     label="Situacao cadastral"
                     value={establishment?.situacao_cadastral || '-'}
                   />
                   <ExecutiveItem label="Atividade principal" value={establishment?.atividade_principal?.descricao} />
                   <ExecutiveItem label="Telefone" value={formatPhone(establishment?.telefone1, establishment?.ddd1)} />
+                  <ExecutiveItem label="E-mail" value={establishment?.email || '-'} />
+                  <ExecutiveItem label="Responsavel" value={getResponsibleLabel(companyData)} />
                   <ExecutiveItem label="Endereco" value={getAddress(establishment)} wide />
                 </div>
               </div>
@@ -514,9 +535,12 @@ export default function App() {
                 <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                   <ExecutiveItem label="Razao social" value={companyData?.razao_social || '-'} />
                   <ExecutiveItem label="Nome fantasia" value={establishment?.nome_fantasia || '-'} />
+                  <ExecutiveItem label="CNPJ" value={formatCnpj(establishment?.cnpj)} />
                   <ExecutiveItem label="Abertura" value={formatDate(establishment?.data_inicio_atividade)} />
                   <ExecutiveItem label="Capital social" value={formatCurrency(companyData?.capital_social)} />
                   <ExecutiveItem label="E-mail" value={establishment?.email || '-'} />
+                  <ExecutiveItem label="Telefone" value={formatPhone(establishment?.telefone1, establishment?.ddd1)} />
+                  <ExecutiveItem label="Responsavel" value={getResponsibleLabel(companyData)} />
                   <ExecutiveItem label="CEP" value={formatCep(establishment?.cep)} />
                   <ExecutiveItem
                     label="Cidade / UF"
