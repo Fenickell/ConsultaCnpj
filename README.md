@@ -1,4 +1,4 @@
-# Consulta de CNPJ em React
+# CONSULTA-CNPJ
 
 Frontend React + Tailwind para consultar CNPJ na API publica `https://publica.cnpj.ws/cnpj/{cnpj}`.
 
