@@ -15,18 +15,30 @@ const API_BASE_URL = 'https://publica.cnpj.ws/cnpj/';
 const RECENT_SEARCHES_KEY = 'consulta-cnpj:recent-searches';
 const MAX_RECENT_SEARCHES = 5;
 
-function LogoMark() {
+function InfoPanel() {
   return (
-    <div className="flex items-center gap-3">
-      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,_#3B5BDB,_#6D83F2)] shadow-[0_14px_30px_rgba(59,91,219,0.35)]">
-        <span className="font-display text-lg font-bold tracking-[0.18em] text-white">C+</span>
-      </div>
-      <div>
-        <div className="font-display text-lg font-semibold tracking-tight text-white">
-          CONSULTA-CNPJ
+    <div className="rounded-[28px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_14px_40px_rgba(0,0,0,0.18)]">
+      <div className="flex gap-2 border-b border-white/8 pb-3">
+        <div className="rounded-full bg-white/[0.06] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-200">
+          Resumo da conta
         </div>
-        <div className="text-xs uppercase tracking-[0.24em] text-slate-400">
-          Receita Federal Insights
+        <div className="rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+          Dados publicos
+        </div>
+      </div>
+
+      <div className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+        Fonte: CNPJ.ws
+      </div>
+
+      <div className="mt-4 space-y-3 text-sm">
+        <div className="flex items-center justify-between border-b border-white/6 pb-3">
+          <span className="text-slate-400">Consultas/min:</span>
+          <span className="font-semibold text-white">3</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-slate-400">Status da API:</span>
+          <span className="font-semibold text-emerald-300">Ativa</span>
         </div>
       </div>
     </div>
@@ -331,39 +343,19 @@ export default function App() {
         <header className="rounded-[36px] border border-white/8 bg-[#111318] px-6 py-7 shadow-[0_24px_90px_rgba(0,0,0,0.36)] sm:px-8 sm:py-8">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <LogoMark />
-              <h1 className="mt-7 font-display text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-                Consulte dados da Receita Federal com clareza executiva.
+              <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#AFC0FF]">
+                CONSULTA-CNPJ
+              </div>
+              <h1 className="mt-5 font-display text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+                Consulta CNPJ
               </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
-                Interface otimizada para analise rapida: resumo enxuto, badges de situacao,
-                historico local e dados completos recolhidos quando voce precisar ir fundo.
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
+                Consulta rapida com resumo claro e informacoes detalhadas quando necessario.
               </p>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-[26px] border border-white/8 bg-white/[0.04] p-5">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500">
-                  Campos preenchidos
-                </div>
-                <div className="mt-3 font-display text-3xl font-semibold text-white">
-                  {filledCount}
-                </div>
-                <div className="mt-2 text-sm text-slate-400">
-                  Atualizado dinamicamente a cada consulta valida.
-                </div>
-              </div>
-              <div className="rounded-[26px] border border-[#3B5BDB]/20 bg-[#3B5BDB]/10 p-5">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#AFC0FF]">
-                  Fonte publica
-                </div>
-                <div className="mt-3 font-display text-2xl font-semibold text-white">
-                  CNPJ.ws
-                </div>
-                <div className="mt-2 text-sm text-slate-300">
-                  Ate 3 consultas por minuto no plano publico.
-                </div>
-              </div>
+            <div className="w-full max-w-sm">
+              <InfoPanel />
             </div>
           </div>
         </header>
@@ -537,7 +529,7 @@ export default function App() {
                     Dados completos
                   </div>
                   <h2 className="mt-2 font-display text-2xl font-semibold text-white">
-                    Explorador tecnico e JSON bruto
+                    Informacoes detalhadas da consulta
                   </h2>
                 </div>
                 <div className="text-sm text-slate-400">
@@ -583,7 +575,7 @@ export default function App() {
                     disabled={!companyData}
                     className="rounded-2xl border border-white/8 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-slate-300 transition hover:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-40"
                   >
-                    {showRawJson ? 'Ocultar JSON bruto' : 'Ver JSON bruto'}
+                    {showRawJson ? 'Ocultar resposta completa' : 'Ver resposta completa'}
                   </button>
                   <button
                     type="button"
@@ -598,7 +590,7 @@ export default function App() {
                 {showRawJson && rawJson ? (
                   <div className="overflow-hidden rounded-3xl border border-white/8 bg-[#0d0f13]">
                     <div className="border-b border-white/6 px-4 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
-                      JSON bruto
+                      Resposta completa da consulta
                     </div>
                     <pre className="max-h-[420px] overflow-auto px-4 py-4 text-sm leading-6 text-slate-200">
                       {rawJson}
@@ -623,7 +615,7 @@ export default function App() {
         <footer className="mt-10 px-1 py-2">
           <div className="flex flex-col gap-3 rounded-[22px] bg-[#0d0f13] px-5 py-4 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              © 2026 CONSULTA-CNPJ. Todos os direitos reservados.
+              2026 CONSULTA-CNPJ. Todos os direitos reservados.
             </div>
             <div className="text-slate-600">
               Plataforma de consulta cadastral
