@@ -619,6 +619,17 @@ export default function App() {
             </details>
           </section>
         </main>
+
+        <footer className="mt-10 rounded-[28px] border border-white/8 bg-[#0f1116] px-6 py-5 shadow-[0_18px_50px_rgba(0,0,0,0.24)]">
+          <div className="flex flex-col gap-3 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              © 2026 CONSULTA-CNPJ. Todos os direitos reservados.
+            </div>
+            <div className="font-medium text-slate-300">
+              Desenvolvido por NICKEL
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );
