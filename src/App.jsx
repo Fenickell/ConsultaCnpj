@@ -20,10 +20,10 @@ function InfoPanel() {
     <div className="rounded-[28px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_14px_40px_rgba(0,0,0,0.18)]">
       <div className="flex gap-2 border-b border-white/8 pb-3">
         <div className="rounded-full bg-white/[0.06] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-200">
-          Resumo da conta
+          Resumo do serviço
         </div>
         <div className="rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-          Dados publicos
+          Dados públicos
         </div>
       </div>
 
@@ -33,7 +33,7 @@ function InfoPanel() {
 
       <div className="mt-4 space-y-3 text-sm">
         <div className="flex items-center justify-between border-b border-white/6 pb-3">
-          <span className="text-slate-400">Consultas/min:</span>
+          <span className="text-slate-400">Consultas por minuto:</span>
           <span className="font-semibold text-white">3</span>
         </div>
         <div className="flex items-center justify-between">
@@ -79,7 +79,7 @@ function StatusBadge({ status }) {
     <span
       className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ${tone}`}
     >
-      {status || 'Nao informada'}
+      {status || 'Não informada'}
     </span>
   );
 }
@@ -136,7 +136,7 @@ function EmptyState() {
         Consulte um CNPJ para abrir o resumo executivo
       </h2>
       <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-400">
-        A tela principal vai destacar nome, CNPJ, situacao, atividade principal, endereco e
+        A tela principal vai destacar nome, CNPJ, situação, atividade principal, endereço e
         telefone. Os dados completos ficam recolhidos logo abaixo.
       </p>
     </div>
@@ -161,7 +161,7 @@ function getAddress(estabelecimento) {
 
 function buildStateRegistrations(inscricoes) {
   if (!Array.isArray(inscricoes) || !inscricoes.length) {
-    return 'Nenhuma inscricao estadual informada';
+    return 'Nenhuma inscrição estadual informada';
   }
 
   return inscricoes
@@ -286,7 +286,7 @@ export default function App() {
 
       if (!response.ok) {
         if (response.status === 404) {
-          throw new Error('CNPJ nao encontrado na base publica.');
+          throw new Error('CNPJ não encontrado na base pública.');
         }
 
         if (response.status === 429) {
@@ -304,7 +304,7 @@ export default function App() {
       setError(
         requestError instanceof Error
           ? requestError.message
-          : 'Nao foi possivel concluir a consulta.',
+          : 'Não foi possível concluir a consulta.',
       );
     } finally {
       setLoading(false);
@@ -333,7 +333,7 @@ export default function App() {
     try {
       await navigator.clipboard.writeText(rawJson);
     } catch {
-      setError('Nao foi possivel copiar o JSON neste navegador.');
+      setError('Não foi possível copiar a resposta neste navegador.');
     }
   }
 
@@ -350,7 +350,7 @@ export default function App() {
                 Consulta CNPJ
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
-                Consulta rapida com resumo claro e informacoes detalhadas quando necessario.
+                Consulta rápida com resumo claro e informações detalhadas quando necessário.
               </p>
             </div>
 
@@ -371,7 +371,7 @@ export default function App() {
                   Buscar empresa
                 </h2>
                 <p className="mt-2 text-sm leading-6 text-slate-400">
-                  Digite o CNPJ e receba um resumo limpo com acesso posterior aos dados tecnicos.
+                  Digite o CNPJ e receba um resumo claro com acesso posterior aos dados detalhados.
                 </p>
               </div>
 
@@ -388,7 +388,7 @@ export default function App() {
                 {showHistory ? (
                   <div className="absolute right-0 z-10 mt-3 w-80 max-w-[80vw] overflow-hidden rounded-3xl border border-white/10 bg-[#171920] shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
                     <div className="border-b border-white/6 px-4 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                      Ultimas 5 consultas
+                      Últimas 5 consultas
                     </div>
                     {recentSearches.length ? (
                       <div className="p-2">
@@ -414,7 +414,7 @@ export default function App() {
                       </div>
                     ) : (
                       <div className="px-4 py-5 text-sm text-slate-400">
-                        Ainda nao ha consultas salvas neste navegador.
+                        Ainda não há consultas salvas neste navegador.
                       </div>
                     )}
                   </div>
@@ -436,7 +436,7 @@ export default function App() {
               </label>
 
               <div className="text-xs leading-6 text-slate-500">
-                Powered by CNPJ.ws | ate 3 consultas por minuto
+                Powered by CNPJ.ws | até 3 consultas por minuto
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -470,13 +470,13 @@ export default function App() {
 
             <div className="mt-6 rounded-[28px] border border-white/8 bg-[#171920] p-5">
               <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">
-                O que voce encontra
+                O que você encontra
               </div>
               <div className="mt-4 grid gap-3 text-sm leading-6 text-slate-300">
-                <div>Resumo executivo enxuto para leitura rapida.</div>
-                <div>Badge de situacao para bater o olho e decidir mais rapido.</div>
-                <div>Historico local para consultas recorrentes de RH e contabilidade.</div>
-                <div>Explorador completo do JSON sem perder flexibilidade.</div>
+                <div>Resumo executivo enxuto para leitura rápida.</div>
+                <div>Badge de situação para leitura imediata.</div>
+                <div>Histórico local para consultas recorrentes.</div>
+                <div>Visualização completa dos dados sem perder flexibilidade.</div>
               </div>
             </div>
           </section>
@@ -500,22 +500,22 @@ export default function App() {
                 </div>
 
                 <div className="mt-6 grid gap-4 md:grid-cols-2">
-                  <ExecutiveItem label="Razao social" value={companyData?.razao_social || '-'} />
+                  <ExecutiveItem label="Razão social" value={companyData?.razao_social || '-'} />
                   <ExecutiveItem label="Nome fantasia" value={establishment?.nome_fantasia || '-'} />
                   <ExecutiveItem label="CNPJ" value={formatCnpj(establishment?.cnpj)} />
                   <ExecutiveItem
-                    label="Inscricao estadual"
+                    label="Inscrição estadual"
                     value={buildStateRegistrations(establishment?.inscricoes_estaduais)}
                   />
                   <ExecutiveItem
-                    label="Situacao cadastral"
+                    label="Situação cadastral"
                     value={establishment?.situacao_cadastral || '-'}
                   />
                   <ExecutiveItem label="CNAE principal" value={getPrimaryCnae(establishment)} />
                   <ExecutiveItem label="Telefone" value={formatPhone(establishment?.telefone1, establishment?.ddd1)} />
                   <ExecutiveItem label="E-mail" value={establishment?.email || '-'} />
-                  <ExecutiveItem label="Responsavel" value={getResponsibleLabel(companyData)} />
-                  <ExecutiveItem label="Endereco" value={getAddress(establishment)} wide />
+                  <ExecutiveItem label="Responsável" value={getResponsibleLabel(companyData)} />
+                  <ExecutiveItem label="Endereço" value={getAddress(establishment)} wide />
                 </div>
               </div>
             ) : (
@@ -529,26 +529,26 @@ export default function App() {
                     Dados completos
                   </div>
                   <h2 className="mt-2 font-display text-2xl font-semibold text-white">
-                    Informacoes detalhadas da consulta
+                    Informações detalhadas da consulta
                   </h2>
                 </div>
                 <div className="text-sm text-slate-400">
                   {companyData
                     ? `${filledCount} campos preenchidos mapeados dinamicamente`
-                    : 'Abra apos consultar um CNPJ valido'}
+                    : 'Abra após consultar um CNPJ válido'}
                 </div>
               </summary>
 
               <div className="mt-6 space-y-6">
                 <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                  <ExecutiveItem label="Razao social" value={companyData?.razao_social || '-'} />
+                  <ExecutiveItem label="Razão social" value={companyData?.razao_social || '-'} />
                   <ExecutiveItem label="Nome fantasia" value={establishment?.nome_fantasia || '-'} />
                   <ExecutiveItem label="CNPJ" value={formatCnpj(establishment?.cnpj)} />
                   <ExecutiveItem label="Abertura" value={formatDate(establishment?.data_inicio_atividade)} />
                   <ExecutiveItem label="Capital social" value={formatCurrency(companyData?.capital_social)} />
                   <ExecutiveItem label="E-mail" value={establishment?.email || '-'} />
                   <ExecutiveItem label="Telefone" value={formatPhone(establishment?.telefone1, establishment?.ddd1)} />
-                  <ExecutiveItem label="Responsavel" value={getResponsibleLabel(companyData)} />
+                  <ExecutiveItem label="Responsável" value={getResponsibleLabel(companyData)} />
                   <ExecutiveItem label="CEP" value={formatCep(establishment?.cep)} />
                   <ExecutiveItem
                     label="Cidade / UF"
@@ -557,7 +557,7 @@ export default function App() {
                       .join(' / ')}
                   />
                   <ExecutiveItem
-                    label="Inscricoes estaduais"
+                    label="Inscrições estaduais"
                     value={buildStateRegistrations(establishment?.inscricoes_estaduais)}
                     wide
                   />
@@ -603,7 +603,7 @@ export default function App() {
                     <JsonNode label="resposta_api" value={companyData} />
                   ) : (
                     <div className="rounded-3xl border border-dashed border-white/10 bg-[#15171c] px-6 py-12 text-center text-sm text-slate-500">
-                      Consulte um CNPJ para abrir o painel tecnico completo.
+                      Consulte um CNPJ para abrir o painel completo.
                     </div>
                   )}
                 </div>
@@ -615,7 +615,7 @@ export default function App() {
         <footer className="mt-10 px-1 py-2">
           <div className="flex flex-col gap-3 rounded-[22px] bg-[#0d0f13] px-5 py-4 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              2026 CONSULTA-CNPJ. Todos os direitos reservados.
+              © 2026 CONSULTA-CNPJ. Todos os direitos reservados.
             </div>
             <div className="text-slate-600">
               Plataforma de consulta cadastral

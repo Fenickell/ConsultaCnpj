@@ -35,7 +35,7 @@ Frontend React + Tailwind para consultar CNPJ na API publica `https://publica.cn
 - Estados de loading e erro.
 - Layout responsivo com resumo executivo.
 - Explorador dinamico que renderiza todos os campos do JSON.
-- Botao para ver JSON bruto e copiar JSON.
+- Botao para ver resposta completa e copiar JSON.
 - Contador de campos preenchidos.
 - Formatacao automatica para CNPJ, CEP, telefones, datas, booleanos e capital social.
 - Fluxo pronto para deploy web na Vercel.

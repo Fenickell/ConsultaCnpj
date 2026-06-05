@@ -134,7 +134,7 @@ export function formatValueByContext(key, value) {
   }
 
   if (typeof value === 'boolean') {
-    return value ? 'Sim' : 'Nao';
+    return value ? 'Sim' : 'Não';
   }
 
   if (typeof value === 'number') {
