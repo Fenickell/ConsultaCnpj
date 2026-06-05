@@ -2,17 +2,17 @@ import { formatValueByContext, humanizeKey } from '../utils/formatters';
 
 function PrimitiveRow({ label, value }) {
   return (
-    <div className="grid gap-1 rounded-2xl border border-slate-200 bg-white/70 px-4 py-3 sm:grid-cols-[220px,1fr]">
+    <div className="grid gap-1 rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3 sm:grid-cols-[220px,1fr]">
       <dt className="text-sm font-medium text-slate-500">{humanizeKey(label)}</dt>
-      <dd className="break-words text-sm text-slate-900">{formatValueByContext(label, value)}</dd>
+      <dd className="break-words text-sm text-slate-200">{formatValueByContext(label, value)}</dd>
     </div>
   );
 }
 
 function ArrayNode({ label, items, depth }) {
   return (
-    <details className="rounded-3xl border border-slate-200 bg-white/80 p-4 shadow-sm" open={depth < 1}>
-      <summary className="cursor-pointer list-none text-sm font-semibold text-slate-900">
+    <details className="rounded-3xl border border-white/8 bg-white/[0.03] p-4 shadow-sm" open={depth < 1}>
+      <summary className="cursor-pointer list-none text-sm font-semibold text-slate-100">
         {humanizeKey(label)} <span className="text-slate-500">({items.length})</span>
       </summary>
       <div className="mt-4 space-y-3">
@@ -21,7 +21,7 @@ function ArrayNode({ label, items, depth }) {
 
           if (item && typeof item === 'object') {
             return (
-              <div key={nodeKey} className="rounded-2xl border border-slate-200 bg-slate-50/80 p-3">
+              <div key={nodeKey} className="rounded-2xl border border-white/8 bg-[#0d0f13] p-3">
                 <div className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                   Item {index + 1}
                 </div>
@@ -57,8 +57,8 @@ function ObjectNode({ label, value, depth, hideLabel = false }) {
   }
 
   return (
-    <details className="rounded-3xl border border-slate-200 bg-white/80 p-4 shadow-sm" open={depth < 1}>
-      <summary className="cursor-pointer list-none text-sm font-semibold text-slate-900">
+    <details className="rounded-3xl border border-white/8 bg-white/[0.03] p-4 shadow-sm" open={depth < 1}>
+      <summary className="cursor-pointer list-none text-sm font-semibold text-slate-100">
         {humanizeKey(label)}
       </summary>
       <div className="mt-4">{content}</div>

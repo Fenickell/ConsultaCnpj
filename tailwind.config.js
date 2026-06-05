@@ -13,7 +13,8 @@ export default {
         soft: '0 20px 60px rgba(15, 23, 42, 0.10)',
       },
       fontFamily: {
-        sans: ['"Segoe UI"', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+        sans: ['Inter', '"Segoe UI"', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
       },
     },
   },

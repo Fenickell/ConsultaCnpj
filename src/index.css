@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  color: #0f172a;
-  background: #e2e8f0;
+  color: #e5e7eb;
+  background: #0b0c10;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', sans-serif;
 }
 
 * {
@@ -22,6 +25,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  background: #0b0c10;
 }
 
 button,
@@ -29,6 +33,10 @@ input,
 textarea,
 select {
   font: inherit;
+}
+
+#root {
+  min-height: 100vh;
 }
 
 summary::-webkit-details-marker {
