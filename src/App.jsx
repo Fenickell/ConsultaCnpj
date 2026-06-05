@@ -173,6 +173,22 @@ function getResponsibleLabel(companyData) {
   return '-';
 }
 
+function getPrimaryCnae(estabelecimento) {
+  const cnae = estabelecimento?.atividade_principal;
+  if (!cnae) {
+    return '-';
+  }
+
+  const code = cnae.subclasse ?? cnae.id ?? cnae.codigo ?? '';
+  const description = cnae.descricao ?? '';
+
+  if (code && description) {
+    return `${code} | ${description}`;
+  }
+
+  return code || description || '-';
+}
+
 function getStatusSummary(companyData) {
   const status = companyData?.estabelecimento?.situacao_cadastral;
   const openingDate = formatDate(companyData?.estabelecimento?.data_inicio_atividade);
@@ -503,7 +519,7 @@ export default function App() {
                     label="Situacao cadastral"
                     value={establishment?.situacao_cadastral || '-'}
                   />
-                  <ExecutiveItem label="Atividade principal" value={establishment?.atividade_principal?.descricao} />
+                  <ExecutiveItem label="CNAE principal" value={getPrimaryCnae(establishment)} />
                   <ExecutiveItem label="Telefone" value={formatPhone(establishment?.telefone1, establishment?.ddd1)} />
                   <ExecutiveItem label="E-mail" value={establishment?.email || '-'} />
                   <ExecutiveItem label="Responsavel" value={getResponsibleLabel(companyData)} />
@@ -555,7 +571,7 @@ export default function App() {
                   />
                   <ExecutiveItem
                     label="CNAE principal"
-                    value={establishment?.atividade_principal?.descricao || '-'}
+                    value={getPrimaryCnae(establishment)}
                   />
                   <ExecutiveItem label="Atualizado em" value={formatDate(companyData?.atualizado_em || establishment?.atualizado_em)} />
                 </div>
