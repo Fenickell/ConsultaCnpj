@@ -620,13 +620,13 @@ export default function App() {
           </section>
         </main>
 
-        <footer className="mt-10 rounded-[28px] border border-white/8 bg-[#0f1116] px-6 py-5 shadow-[0_18px_50px_rgba(0,0,0,0.24)]">
-          <div className="flex flex-col gap-3 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+        <footer className="mt-10 px-1 py-2">
+          <div className="flex flex-col gap-3 rounded-[22px] bg-[#0d0f13] px-5 py-4 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
             <div>
               © 2026 CONSULTA-CNPJ. Todos os direitos reservados.
             </div>
-            <div className="font-medium text-slate-300">
-              Desenvolvido por NICKEL
+            <div className="text-slate-600">
+              Plataforma de consulta cadastral
             </div>
           </div>
         </footer>
