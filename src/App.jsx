@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import JsonNode from './components/JsonTree';
 import {
   countFilledFields,
+  formatCep,
   formatCnpj,
   formatCnpjInput,
+  formatCurrency,
   formatDate,
   formatPhone,
   onlyDigits,
@@ -143,6 +145,19 @@ function getAddress(estabelecimento) {
   ].filter(Boolean);
 
   return parts.length ? parts.join(', ') : '-';
+}
+
+function buildStateRegistrations(inscricoes) {
+  if (!Array.isArray(inscricoes) || !inscricoes.length) {
+    return 'Nenhuma inscricao estadual informada';
+  }
+
+  return inscricoes
+    .map((item) => {
+      const status = item.ativo ? 'ativa' : 'inativa';
+      return `${item.estado?.sigla ?? 'UF'}: ${item.inscricao_estadual ?? '-'} (${status})`;
+    })
+    .join(' | ');
 }
 
 function getStatusSummary(companyData) {
@@ -498,15 +513,26 @@ export default function App() {
               <div className="mt-6 space-y-6">
                 <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                   <ExecutiveItem label="Razao social" value={companyData?.razao_social || '-'} />
+                  <ExecutiveItem label="Nome fantasia" value={establishment?.nome_fantasia || '-'} />
                   <ExecutiveItem label="Abertura" value={formatDate(establishment?.data_inicio_atividade)} />
+                  <ExecutiveItem label="Capital social" value={formatCurrency(companyData?.capital_social)} />
                   <ExecutiveItem label="E-mail" value={establishment?.email || '-'} />
+                  <ExecutiveItem label="CEP" value={formatCep(establishment?.cep)} />
                   <ExecutiveItem
                     label="Cidade / UF"
                     value={[establishment?.cidade?.nome, establishment?.estado?.sigla]
                       .filter(Boolean)
                       .join(' / ')}
                   />
-                  <ExecutiveItem label="Inscricoes estaduais" value={establishment?.inscricoes_estaduais?.length || 0} />
+                  <ExecutiveItem
+                    label="Inscricoes estaduais"
+                    value={buildStateRegistrations(establishment?.inscricoes_estaduais)}
+                    wide
+                  />
+                  <ExecutiveItem
+                    label="CNAE principal"
+                    value={establishment?.atividade_principal?.descricao || '-'}
+                  />
                   <ExecutiveItem label="Atualizado em" value={formatDate(companyData?.atualizado_em || establishment?.atualizado_em)} />
                 </div>
 
